@@ -2,6 +2,8 @@
 Simple project to get a refresher on C using raylib.
 Add up to 20 points (movable) to form a spline.
 
+![](https://github.com/OfirTzrik/Spline/blob/main/demo.gif)
+
 TO-DO:
 1. Move functions to a separate file.
 2. Replace Circle struct with something simpler (using raylib's Vector2?).
