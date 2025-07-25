@@ -1,5 +1,5 @@
 TARGET = spline
-LIBS   = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+LIBS   = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -ansi -pedantic
 
 all: $(TARGET)
 
