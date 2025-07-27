@@ -29,18 +29,22 @@ int main(void) {
   
     /* Add circles and move around */
     while(!WindowShouldClose()) {
-        BeginDrawing();
-        DrawText("Press SPACE to add new points", 5, 5, 20, BLACK);
-        DrawFPS(WINDOW_WIDTH - 80, 5);
-        ClearBackground(RAYWHITE);
-        
+
         if(IsKeyPressed(KEY_SPACE)) {
             AddNewCircles(circles, &circlesArraySize);
         }
+
+        BeginDrawing();
+
+        /* Content start */
+        DrawText("Press SPACE to add new points", 5, 5, 20, BLACK);
+        DrawFPS(WINDOW_WIDTH - 80, 5);
+        ClearBackground(RAYWHITE);
         movePoints(circles, &circlesArraySize);
         drawCirclesInArray(circles, &circlesArraySize);
         drawSplineSegment(circles, &circlesArraySize);
-        
+        /* Content end */
+
         EndDrawing();
     }
 
@@ -51,16 +55,14 @@ int main(void) {
 
 /* Add new circles to the list of circles to construct the spline */
 void AddNewCircles(struct Circle* circles, int* circlesArraySize) {
-    if(*circlesArraySize >= MAX_NUM_CIRCLES) {
+    if(*circlesArraySize >= MAX_NUM_CIRCLES)
         return;
-    }
   
     /* First 4 required for the spline */
     if(*circlesArraySize == 0) {
         int i;
-        for(i = 0; i < 4; i++) {
+        for(i = 0; i < 4; i++)
             circles[*circlesArraySize] = createCircle(&circlesArraySize);
-        }
     } else {
         circles[*circlesArraySize] = createCircle(&circlesArraySize);
     }
@@ -71,16 +73,15 @@ void drawCirclesInArray(struct Circle* circles, int* circlesArraySize) {
     /* Draw the circles numbering labels */
     int i;
     for(i = 0; i < *circlesArraySize; i++) {
-        char buffer[16];
+        char buffer[3]; /* Just enough bytes */
         intToString(i, buffer);
-        DrawText(buffer, circles[i].center.x - 7, circles[i].center.y - 30, 20, BLUE);
+        DrawText(buffer, circles[i].center.x - LABEL_OFFSET_X, circles[i].center.y - LABEL_OFFSET_Y, 20, BLUE);
         DrawCircle(circles[i].center.x, circles[i].center.y, circles[i].radius, BLUE);
     }
     
     /* Draw lines connecting consequtive points */
-    for(i = 0; i < *circlesArraySize - 1; i++) {
+    for(i = 0; i < *circlesArraySize - 1; i++)
         DrawLine(circles[i].center.x, circles[i].center.y, circles[i + 1].center.x, circles[i + 1].center.y, BLACK);
-    }
 }
 
 /* Hold and drag to move the points around */
@@ -91,12 +92,10 @@ void movePoints(struct Circle* circles, int* circlesArraySize) {
     for(i = 0; i < *circlesArraySize; i++) {
         if(CheckCollisionPointCircle(mousePosition, circles[i].center, circles[i].radius) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             circles[i].selected = true;
-        if(circles[i].selected) {
-            circles[i].center.x = mousePosition.x;
-            circles[i].center.y = mousePosition.y;
+        if(circles[i].selected)
+            circles[i].center = mousePosition;
         if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
             circles[i].selected = false;
-        }
     }
 }
 
@@ -180,7 +179,7 @@ struct Circle createCircle(int **circlesArraySize) {
 
     temp.center.x = 50 + rand() % (WINDOW_WIDTH - 99);
     temp.center.y = 50 + rand() % (WINDOW_HEIGHT - 99);
-    temp.radius = 10;
+    temp.radius = RADIUS;
     temp.selected = false;
 
     (**circlesArraySize)++;
@@ -194,9 +193,8 @@ void intToString(int num, char *str) {
     char *j;
 
     /* Take each digit and add it to the string (reversed) */
-    if(num == 0) {
+    if(num == 0)
         *str++ = '0';
-    }
     while(num > 0) {
         *str++ = (num % 10) + '0';
         num /= 10;
