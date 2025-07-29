@@ -1,4 +1,4 @@
-TARGET = spline
+TARGET = main
 SRC = spline.c functions.c
 HEADER = functions.h definitions.h
 LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -ansi -pedantic -s -O2

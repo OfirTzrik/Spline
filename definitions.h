@@ -5,7 +5,7 @@
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
-#define MAX_NUM_CIRCLES 500
+#define MAX_NUM_CIRCLES 20
 #define RADIUS 10
 #define LABEL_OFFSET_X 7
 #define LABEL_OFFSET_Y 30

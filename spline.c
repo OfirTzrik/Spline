@@ -23,6 +23,7 @@ int main(void) {
         if(IsKeyPressed(KEY_SPACE)) {
             AddNewCircles(circles, &circlesArraySize);
         }
+        movePoints(circles, &circlesArraySize);
 
         BeginDrawing();
 
@@ -30,7 +31,6 @@ int main(void) {
         DrawText("Press SPACE to add new points", 5, 5, 20, BLACK);
         DrawFPS(WINDOW_WIDTH - 80, 5);
         ClearBackground(RAYWHITE);
-        movePoints(circles, &circlesArraySize);
         drawCirclesInArray(circles, &circlesArraySize);
         drawSplineSegment(circles, &circlesArraySize);
         /* Content end */
