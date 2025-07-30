@@ -19,10 +19,7 @@ int main(void) {
   
     /* Add circles and move around */
     while(!WindowShouldClose()) {
-
-        if(IsKeyPressed(KEY_SPACE)) {
-            AddNewCircles(circles, &circlesArraySize);
-        }
+        addNewCircleOnClick(circles, &circlesArraySize);
         movePoints(circles, &circlesArraySize);
 
         BeginDrawing();

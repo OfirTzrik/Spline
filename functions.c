@@ -3,18 +3,25 @@
 #include "definitions.h"
 #include "functions.h"
 
-/* Add new circles to the list of circles to construct the spline */
-void AddNewCircles(struct Circle* circles, int* circlesArraySize) {
+void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize) {
+    Vector2 mousePosition = GetMousePosition();
     if(*circlesArraySize >= MAX_NUM_CIRCLES)
         return;
-  
-    /* First 4 required for the spline */
-    if(*circlesArraySize == 0) {
-        int i;
-        for(i = 0; i < 4; i++)
-            circles[*circlesArraySize] = createCircle(&circlesArraySize);
-    } else {
-        circles[*circlesArraySize] = createCircle(&circlesArraySize);
+
+    if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+        if(*circlesArraySize == 0) { /* Add first 4 points required for a spline */
+            /* Initializers need to be computable at load time */
+            Vector2 temp0 = {100, 100};
+            Vector2 temp1 = {200, 200};
+            Vector2 temp2 = {300, 300};
+            Vector2 temp3 = {400, 400};
+            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp0);
+            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp1);
+            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp2);
+            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp3);
+        } else {
+            circles[*circlesArraySize] = createCircle(&circlesArraySize, mousePosition);
+        }
     }
 }
 
@@ -123,12 +130,12 @@ Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1) {
     return temp;
 }
 
-/* Create a circle and increase count */
-struct Circle createCircle(int **circlesArraySize) {
+/* Create a circle where the mouse was clicked and increase count */
+struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
     Circle temp;
 
-    temp.center.x = 50 + rand() % (WINDOW_WIDTH - 99);
-    temp.center.y = 50 + rand() % (WINDOW_HEIGHT - 99);
+    temp.center.x = mousePosition.x;
+    temp.center.y = mousePosition.y;
     temp.radius = RADIUS;
     temp.selected = false;
 

@@ -5,13 +5,14 @@
 
 /*
 Description:
-Create a new circle in a random position.
+Create a new circle where the right mouse button was clicked with the exception
+of the first click (4 are added as required for a spline).
 
 Parameters:
 @param struct Circle*   = Array holding all the Circle(s) created so far
 @param int*             = Variable holding the size of the array passed
 */
-void AddNewCircles(struct Circle* circles, int* circlesArraySize);
+void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize);
 
 /*
 Description:
@@ -83,9 +84,10 @@ AddNewCircles).
 
 Parameters:
 @param int**            = Size of the array as a double pointer (through AddNewCircles)
+@param Vector2          = Point on screen where the mouse left-clicked
 @return struct Circle   = The new circle that was created and will be added to the array
 */
-struct Circle createCircle(int **circlesArraySize);
+struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition);
 
 /*
 Description:
