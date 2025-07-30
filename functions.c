@@ -3,6 +3,7 @@
 #include "definitions.h"
 #include "functions.h"
 
+/* Add a circle to where the mouse right-clicked */
 void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize) {
     Vector2 mousePosition = GetMousePosition();
     if(*circlesArraySize >= MAX_NUM_CIRCLES)
@@ -130,7 +131,7 @@ Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1) {
     return temp;
 }
 
-/* Create a circle where the mouse was clicked and increase count */
+/* Create a circle where the mouse was right-clicked and increase count */
 struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
     Circle temp;
 
