@@ -10,15 +10,10 @@ void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize) {
 
     if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
         if(*circlesArraySize == 0) { /* Add first 4 points required for a spline */
-            /* Initializers need to be computable at load time */
-            Vector2 temp0 = {100, 100};
-            Vector2 temp1 = {200, 200};
-            Vector2 temp2 = {300, 300};
-            Vector2 temp3 = {400, 400};
-            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp0);
-            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp1);
-            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp2);
-            circles[*circlesArraySize] = createCircle(&circlesArraySize, temp3);
+            Vector2 temps[4] = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};
+            int i;
+            for(i = 0; i < 4; i++)
+                circles[*circlesArraySize] = createCircle(&circlesArraySize, temps[i]);
         } else {
             circles[*circlesArraySize] = createCircle(&circlesArraySize, mousePosition);
         }
