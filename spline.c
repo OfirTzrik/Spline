@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>
 #include "definitions.h"
 #include "functions.h"
 
@@ -15,7 +12,6 @@ int main(void) {
     if(!IsWindowReady())
         return -1;
     SetTargetFPS(60);
-    srand(time(NULL));
   
     /* Add circles and move around */
     while(!WindowShouldClose()) {
