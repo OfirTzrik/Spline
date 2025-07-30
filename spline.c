@@ -21,7 +21,8 @@ int main(void) {
         BeginDrawing();
 
         /* Content start */
-        DrawText("Press SPACE to add new points", 5, 5, 20, BLACK);
+        DrawText("RIGHT-CLICK to add new points", 5, 5, 20, BLACK);
+        DrawText("LEFT-CLICK to move points around", 5, 30, 20, BLACK);
         DrawFPS(WINDOW_WIDTH - 80, 5);
         ClearBackground(RAYWHITE);
         drawCirclesInArray(circles, &circlesArraySize);
