@@ -44,6 +44,4 @@ make clean
 
 ## Roadmap
 
-- Add reset button
-- Undo
 - Export to image
