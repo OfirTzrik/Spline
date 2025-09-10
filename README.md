@@ -41,6 +41,8 @@ make clean
 
 - Right click to add a point  
 - Left click to move a point
+- R to reset
+- U to undo
 
 ## Roadmap
 
