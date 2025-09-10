@@ -24,7 +24,9 @@ This repo uses a Makefile.
 ### Linux (Debian/Ubuntu)
 ```bash
 sudo apt-get update
-sudo apt-get install -y build-essential pkg-config libraylib-dev   libx11-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev
+sudo apt-get install -y build-essential pkg-config libraylib-dev libx11-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev
+git clone https://github.com/OfirTzrik/Spline.git
+cd Spline
 make
 ```
 
