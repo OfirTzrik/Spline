@@ -2,17 +2,29 @@
 #include "definitions.h"
 #include "functions.h"
 
+/* Remove all the circles */
+void resetAllCircles(int* circlesArraySize) {
+    *circlesArraySize = 0;
+}
+
+/* Remove the last circle that was added */
+void undoLastCircle(int *circlesArraySize) {
+    if (*circlesArraySize > 0) {
+        (*circlesArraySize)--;
+    }
+}
+
 /* Add a circle to where the mouse right-clicked */
 void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize) {
     Vector2 mousePosition = GetMousePosition();
-    if(*circlesArraySize >= MAX_NUM_CIRCLES)
+    if (*circlesArraySize >= MAX_NUM_CIRCLES)
         return;
 
-    if(IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
-        if(*circlesArraySize == 0) { /* Add first 4 points required for a spline */
+    if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
+        if (*circlesArraySize == 0) { /* Add first 4 points required for a spline */
             Vector2 temps[4] = {{100, 100}, {200, 200}, {300, 300}, {400, 400}};
             int i;
-            for(i = 0; i < 4; i++)
+            for (i = 0; i < 4; i++)
                 circles[*circlesArraySize] = createCircle(&circlesArraySize, temps[i]);
         } else {
             circles[*circlesArraySize] = createCircle(&circlesArraySize, mousePosition);
@@ -24,7 +36,7 @@ void addNewCircleOnClick(struct Circle* circles, int* circlesArraySize) {
 void drawCirclesInArray(struct Circle* circles, int* circlesArraySize) {
     /* Draw the circles numbering labels */
     int i;
-    for(i = 0; i < *circlesArraySize; i++) {
+    for (i = 0; i < *circlesArraySize; i++) {
         char buffer[3]; /* Just enough bytes */
         intToString(i, buffer);
         DrawText(buffer, circles[i].center.x - LABEL_OFFSET_X, circles[i].center.y - LABEL_OFFSET_Y, 20, BLUE);
@@ -32,7 +44,7 @@ void drawCirclesInArray(struct Circle* circles, int* circlesArraySize) {
     }
     
     /* Draw lines connecting consequtive points */
-    for(i = 0; i < *circlesArraySize - 1; i++)
+    for (i = 0; i < *circlesArraySize - 1; i++)
         DrawLine(circles[i].center.x, circles[i].center.y, circles[i + 1].center.x, circles[i + 1].center.y, BLACK);
 }
 
@@ -41,12 +53,12 @@ void movePoints(struct Circle* circles, int* circlesArraySize) {
     Vector2 mousePosition = GetMousePosition();
     
     int i;
-    for(i = 0; i < *circlesArraySize; i++) {
-        if(CheckCollisionPointCircle(mousePosition, circles[i].center, circles[i].radius) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+    for (i = 0; i < *circlesArraySize; i++) {
+        if (CheckCollisionPointCircle(mousePosition, circles[i].center, circles[i].radius) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             circles[i].selected = true;
-        if(circles[i].selected)
+        if (circles[i].selected)
             circles[i].center = mousePosition;
-        if(IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
             circles[i].selected = false;
     }
 }
@@ -68,7 +80,7 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
     Vector2 b2;
     
     int i;
-    for(i = 0; i < *circlesArraySize - 3; i++) {
+    for (i = 0; i < *circlesArraySize - 3; i++) {
         /* Get the 4 points that determine the shape of the current segment */
         struct Circle p0 = circles[i];
         struct Circle p1 = circles[i + 1];
@@ -82,7 +94,7 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
         
         /* Calculate and draw the segment going through p1 and p2 (with p0 and p3) */
         float t;
-        for(t = t1; t <= t2; t += SPLINE_SAMPLE_RATE) {
+        for (t = t1; t <= t2; t += SPLINE_SAMPLE_RATE) {
             a1 = addVectors2(scaledVector2((t1 - t) / (t1 - t0), p0.center), scaledVector2((t - t0) / (t1 - t0), p1.center));
             a2 = addVectors2(scaledVector2((t2 - t) / (t2 - t1), p1.center), scaledVector2((t - t1) / (t2 - t1), p2.center));
             a3 = addVectors2(scaledVector2((t3 - t) / (t3 - t2), p2.center), scaledVector2((t - t2) / (t3 - t2), p3.center));
@@ -145,15 +157,15 @@ void intToString(int num, char *str) {
     char *j;
 
     /* Take each digit and add it to the string (reversed) */
-    if(num == 0)
+    if (num == 0)
         *str++ = '0';
-    while(num > 0) {
+    while (num > 0) {
         *str++ = (num % 10) + '0';
         num /= 10;
     }
 
     /* Reverse the string */
-    for(j = str - 1; i < j; i++, j--) {
+    for (j = str - 1; i < j; i++, j--) {
         char temp = *i;
         *i = *j;
         *j = temp;
