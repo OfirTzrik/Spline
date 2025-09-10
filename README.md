@@ -4,7 +4,7 @@ Interactive spline drawing in C with [raylib](https://www.raylib.com/). Add and 
 
 ## Demo
 
-![](https://github.com/OfirTzrik/Spline/blob/main/demo1.gif)
+![](https://github.com/OfirTzrik/Spline/blob/main/demo2.gif)
 
 ## Features
 
