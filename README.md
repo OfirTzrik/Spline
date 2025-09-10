@@ -2,21 +2,15 @@
 
 Interactive spline drawing in C with [raylib](https://www.raylib.com/). Add and move control points. Render a smooth curve in real time.
 
----
-
 ## Demo
 
 ![](https://github.com/OfirTzrik/Spline/blob/main/demo1.gif)
-
----
 
 ## Features
 
 - Interactive control points.
 - Smooth curve rendering.
 - Simple, portable C.
-
----
 
 ## Build
 
@@ -41,14 +35,10 @@ make clean
 
 > Note: The provided `LIBS` are Linux/X11 specific. On macOS or Windows you must adjust the libraries and frameworks for your toolchain.
 
----
-
 ## Controls
 
 - Right click to add a point  
 - Left click to move a point
-
----
 
 ## Roadmap
 
