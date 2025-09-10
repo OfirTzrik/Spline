@@ -12,10 +12,10 @@
 #define SPLINE_SAMPLE_RATE 0.1
 #define SPLINE_ALPHA 0.5
 
-typedef struct Circle {
+struct Circle {
   Vector2 center;
   int radius;
   bool selected;
-} Circle;
+};
 
 #endif

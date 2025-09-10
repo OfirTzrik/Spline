@@ -70,10 +70,10 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
     int i;
     for(i = 0; i < *circlesArraySize - 3; i++) {
         /* Get the 4 points that determine the shape of the current segment */
-        Circle p0 = circles[i];
-        Circle p1 = circles[i + 1];
-        Circle p2 = circles[i + 2];
-        Circle p3 = circles[i + 3];
+        struct Circle p0 = circles[i];
+        struct Circle p1 = circles[i + 1];
+        struct Circle p2 = circles[i + 2];
+        struct Circle p3 = circles[i + 3];
         
         float t0 = 0;
         float t1 = t0 + pow(getChordLength(p1, p0), SPLINE_ALPHA);
@@ -127,7 +127,7 @@ Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1) {
 
 /* Create a circle where the mouse was right-clicked and increase count */
 struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
-    Circle temp;
+    struct Circle temp;
 
     temp.center.x = mousePosition.x;
     temp.center.y = mousePosition.y;
