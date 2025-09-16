@@ -24,7 +24,10 @@ This repo uses a Makefile.
 ### Linux (Debian/Ubuntu)
 ```bash
 sudo apt-get update
-sudo apt-get install -y build-essential pkg-config libraylib-dev libx11-dev libxrandr-dev libxi-dev libxinerama-dev libxcursor-dev
+sudo apt-get install -y build-essential git libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
+```
+Follow "[Building raylib with CMake](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux#build-raylib-using-cmake)" and then:
+```bash
 git clone https://github.com/OfirTzrik/Spline.git
 cd Spline
 make
