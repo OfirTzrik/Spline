@@ -40,7 +40,7 @@ void drawCirclesInArray(struct Circle* circles, int* circlesArraySize) {
         char buffer[3]; /* Just enough bytes */
         intToString(i, buffer);
         DrawText(buffer, circles[i].center.x - LABEL_OFFSET_X, circles[i].center.y - LABEL_OFFSET_Y, 20, BLUE);
-        DrawCircle(circles[i].center.x, circles[i].center.y, circles[i].radius, BLUE);
+        DrawCircle(circles[i].center.x, circles[i].center.y, RADIUS, BLUE);
     }
     
     /* Draw lines connecting consequtive points */
@@ -54,7 +54,7 @@ void movePoints(struct Circle* circles, int* circlesArraySize) {
     
     int i;
     for (i = 0; i < *circlesArraySize; i++) {
-        if (CheckCollisionPointCircle(mousePosition, circles[i].center, circles[i].radius) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        if (CheckCollisionPointCircle(mousePosition, circles[i].center, RADIUS) && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
             circles[i].selected = true;
         if (circles[i].selected)
             circles[i].center = mousePosition;
@@ -143,7 +143,6 @@ struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
 
     temp.center.x = mousePosition.x;
     temp.center.y = mousePosition.y;
-    temp.radius = RADIUS;
     temp.selected = false;
 
     (**circlesArraySize)++;

@@ -14,7 +14,6 @@
 
 struct Circle {
   Vector2 center;
-  int radius;
   bool selected;
 };
 
