@@ -94,7 +94,7 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
         
         /* Calculate and draw the segment going through p1 and p2 (with p0 and p3) */
         float t;
-        for (t = t1; t <= t2; t += SPLINE_SAMPLE_RATE) {
+        for (t = t1; t <= t2; t += (t2 - t1) / SPLINE_SAMPLE_RATE) {
             a1 = addVectors2(scaledVector2((t1 - t) / (t1 - t0), p0.center), scaledVector2((t - t0) / (t1 - t0), p1.center));
             a2 = addVectors2(scaledVector2((t2 - t) / (t2 - t1), p1.center), scaledVector2((t - t1) / (t2 - t1), p2.center));
             a3 = addVectors2(scaledVector2((t3 - t) / (t3 - t2), p2.center), scaledVector2((t - t2) / (t3 - t2), p3.center));
