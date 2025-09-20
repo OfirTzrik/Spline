@@ -46,7 +46,8 @@ make clean
 - Left click to move a point
 - R to reset
 - U to undo
+- Enter to take a screenshot
 
 ## Roadmap
 
-- Export to image
+- ...
