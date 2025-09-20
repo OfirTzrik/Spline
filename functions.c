@@ -92,9 +92,10 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
         float t2 = t1 + pow(getChordLength(p2, p1), SPLINE_ALPHA);
         float t3 = t2 + pow(getChordLength(p3, p2), SPLINE_ALPHA);
         
-        /* Calculate and draw the segment going through p1 and p2 (with p0 and p3) */
+        /* Calculate and draw the segment going through p1 and p2 (with p0 and p3)
+        Avoid an infinite loop using 0.00001 in the case where two points overlap */
         float t;
-        for (t = t1; t <= t2; t += (t2 - t1) / SPLINE_SAMPLE_RATE) {
+        for (t = t1; t <= t2; t += ((t2 - t1) / SPLINE_SAMPLE_RATE) + 0.00001) {
             a1 = addVectors2(scaledVector2((t1 - t) / (t1 - t0), p0.center), scaledVector2((t - t0) / (t1 - t0), p1.center));
             a2 = addVectors2(scaledVector2((t2 - t) / (t2 - t1), p1.center), scaledVector2((t - t1) / (t2 - t1), p2.center));
             a3 = addVectors2(scaledVector2((t3 - t) / (t3 - t2), p2.center), scaledVector2((t - t2) / (t3 - t2), p3.center));
@@ -112,8 +113,8 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
 
 /* Get chord length for the segment in a spline */
 float getChordLength(struct Circle p0, struct Circle p1) {
-    int dx = p0.center.x - p1.center.x;
-    int dy = p0.center.y - p1.center.y;
+    float dx = p0.center.x - p1.center.x;
+    float dy = p0.center.y - p1.center.y;
     return sqrt(dx * dx + dy * dy);
 }
 
