@@ -50,4 +50,5 @@ make clean
 
 ## Roadmap
 
-- ...
+- Export coordinates of segments points to txt file for usage in 3rd party programs
+- Upload image to draw spline (path) on
