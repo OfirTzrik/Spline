@@ -1,4 +1,4 @@
-# Spline Drawer (C + raylib)
+# Spline Drawer
 
 Interactive spline drawing in C with [raylib](https://www.raylib.com/). Add and move control points. Render a smooth curve in real time.
 
