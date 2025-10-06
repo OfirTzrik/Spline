@@ -1,7 +1,7 @@
 TARGET = main
 SRC = spline.c functions.c
 HEADER = functions.h definitions.h
-LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -Wextra -ansi -pedantic -s -O2
+LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -Wextra -Werror -ansi -pedantic -s -O2
 
 all: $(TARGET)
 

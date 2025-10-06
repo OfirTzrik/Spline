@@ -19,7 +19,7 @@ This repo uses a Makefile.
 **Target:** `main`  
 **Sources:** `spline.c functions.c`  
 **Headers:** `functions.h definitions.h`  
-**Link flags:** `-lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -ansi -pedantic -s -O2`
+**Link flags:** `-lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Wall -Wextra -Werror -ansi -pedantic -s -O2`
 
 ### Linux (Debian/Ubuntu)
 ```bash
