@@ -1,10 +1,9 @@
 #include <math.h>
-#include "definitions.h"
 #include "functions.h"
 
 /* Remove all the circles */
 void resetAllCircles(int* circlesArraySize) {
-    *circlesArraySize = 0;
+	*circlesArraySize = 0;
 }
 
 /* Remove the last circle that was added */

@@ -1,4 +1,3 @@
-#include "definitions.h"
 #include "functions.h"
 
 /* Entry point */
