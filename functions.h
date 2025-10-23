@@ -54,46 +54,4 @@ p0 and p3 (every 4 points determine a segment).
 */
 void drawSplineSegment(struct Circle* circles, int* circlesArraySize);
 
-/*
-Calculate chord length given 2 points which the spline passes through.
-
-@param struct Circle    First circle in the segment the spline passes through
-@param struct Circle    First circle in the segment the spline passes through
-*/
-float getChordLength(struct Circle p0, struct Circle p1);
-
-/*
-Scale a Vector2.
-
-@param float            Scalar
-@param Vector2          Vector2 to change the scale of
-*/
-Vector2 scaledVector2(float scalar, Vector2 vector2);
-
-/*
-Add two Vector2 together.
-
-@param Vector2          First Vector2
-@param Vector2          Second Vector2
-*/
-Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1);
-
-/*
-Create a new circle to be added to the list of circles (helper function for
-AddNewCircles).
-
-@param int**            Size of the array as a double pointer (through AddNewCircles)
-@param Vector2          Point on screen where the mouse left-clicked
-@return struct Circle   The new circle that was created and will be added to the array
-*/
-struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition);
-
-/*
-Convert an integer to a string.
-
-@param int              Number to convert to string
-@param char*            Coversion result
-*/
-void intToString(int num, char *str);
-
 #endif

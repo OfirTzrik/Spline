@@ -1,6 +1,73 @@
 #include <math.h>
 #include "functions.h"
 
+/* Helper functions */
+
+/* Get chord length for the segment in a spline */
+static float getChordLength(struct Circle p0, struct Circle p1) {
+    float dx = p0.center.x - p1.center.x;
+    float dy = p0.center.y - p1.center.y;
+    return sqrt(dx * dx + dy * dy);
+}
+
+/* Returned a scaled Vector2 */
+static Vector2 scaledVector2(float scalar, Vector2 vector2) {
+    Vector2 temp;
+
+    temp.x = scalar * vector2.x;
+    temp.y = scalar * vector2.y;
+
+    return temp;
+}
+
+/* Add two Vector2s */
+static Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1) {
+    Vector2 temp;
+
+    temp.x = vector2_0.x + vector2_1.x;
+    temp.y = vector2_0.y + vector2_1.y;
+
+    return temp;
+}
+
+/* Create a circle where the mouse was right-clicked and increase count */
+static struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
+    struct Circle temp;
+
+    temp.center.x = mousePosition.x;
+    temp.center.y = mousePosition.y;
+    temp.selected = false;
+
+    (**circlesArraySize)++;
+
+    return temp;
+}
+
+/* Convert an integer to string (used instead of snprint) */
+static void intToString(int num, char *str) {
+    char *i = str;
+    char *j;
+
+    /* Take each digit and add it to the string (reversed) */
+    if (num == 0)
+        *str++ = '0';
+    while (num > 0) {
+        *str++ = (num % 10) + '0';
+        num /= 10;
+    }
+
+    /* Reverse the string */
+    for (j = str - 1; i < j; i++, j--) {
+        char temp = *i;
+        *i = *j;
+        *j = temp;
+    }
+
+    *str = '\0';
+}
+
+/* Main functions */
+
 /* Remove all the circles */
 void resetAllCircles(int* circlesArraySize) {
 	*circlesArraySize = 0;
@@ -108,67 +175,3 @@ void drawSplineSegment(struct Circle* circles, int* circlesArraySize) {
     }
 }
 
-/* Helper functions */
-
-/* Get chord length for the segment in a spline */
-float getChordLength(struct Circle p0, struct Circle p1) {
-    float dx = p0.center.x - p1.center.x;
-    float dy = p0.center.y - p1.center.y;
-    return sqrt(dx * dx + dy * dy);
-}
-
-/* Returned a scaled Vector2 */
-Vector2 scaledVector2(float scalar, Vector2 vector2) {
-    Vector2 temp;
-
-    temp.x = scalar * vector2.x;
-    temp.y = scalar * vector2.y;
-
-    return temp;
-}
-
-/* Add two Vector2s */
-Vector2 addVectors2(Vector2 vector2_0, Vector2 vector2_1) {
-    Vector2 temp;
-
-    temp.x = vector2_0.x + vector2_1.x;
-    temp.y = vector2_0.y + vector2_1.y;
-
-    return temp;
-}
-
-/* Create a circle where the mouse was right-clicked and increase count */
-struct Circle createCircle(int **circlesArraySize, Vector2 mousePosition) {
-    struct Circle temp;
-
-    temp.center.x = mousePosition.x;
-    temp.center.y = mousePosition.y;
-    temp.selected = false;
-
-    (**circlesArraySize)++;
-
-    return temp;
-}
-
-/* Convert an integer to string (used instead of snprint) */
-void intToString(int num, char *str) {
-    char *i = str;
-    char *j;
-
-    /* Take each digit and add it to the string (reversed) */
-    if (num == 0)
-        *str++ = '0';
-    while (num > 0) {
-        *str++ = (num % 10) + '0';
-        num /= 10;
-    }
-
-    /* Reverse the string */
-    for (j = str - 1; i < j; i++, j--) {
-        char temp = *i;
-        *i = *j;
-        *j = temp;
-    }
-
-    *str = '\0';
-}
